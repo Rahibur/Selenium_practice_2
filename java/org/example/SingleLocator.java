@@ -1,11 +1,13 @@
+ /* Playing with locators (id,className,name,tagName,cssSelector,xpath,partialLinkText,linkText*/
+
 package org.example;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-public class Locators extends DriveTest{
-    /* Playing with locators */
+public class SingleLocator extends DriveTest{
+
     @Test
     public void locator() throws InterruptedException {
         driver.get("https://www.google.com/");
