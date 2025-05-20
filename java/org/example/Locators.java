@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class Locators extends DriveTest{
+    /* Playing with locators */
     @Test
     public void locator() throws InterruptedException {
         driver.get("https://www.google.com/");
@@ -13,7 +14,9 @@ public class Locators extends DriveTest{
         //searchArea = driver.findElement(By.id("APjFqb"));
         //searchArea = driver.findElement(By.className("gLFyf"));
         //searchArea = driver.findElement(By.name("q"));
-        searchArea = driver.findElement(By.tagName("textarea"));
+        //searchArea = driver.findElement(By.tagName("textarea"));
+        //searchArea= driver.findElement(By.cssSelector("textarea[class='gLFyf']"));
+        searchArea = driver.findElement(By.xpath("//textarea[@class=\"gLFyf\"]"));
 
         //Type
         searchArea.sendKeys("Bangladesh");
@@ -27,6 +30,7 @@ public class Locators extends DriveTest{
         driver.manage().window().maximize();
         Thread.sleep(3000);
 
+
         //search by partial link and click
         driver.findElement(By.partialLinkText("কীভাবে কাজ করে")).click();
         Thread.sleep(3000);
@@ -34,6 +38,7 @@ public class Locators extends DriveTest{
         // Browser navigate back
         driver.navigate().back();
         Thread.sleep(1000);
+
 
         //Search by linktext and click
         driver.findElement(By.linkText("Gmail")).click();
