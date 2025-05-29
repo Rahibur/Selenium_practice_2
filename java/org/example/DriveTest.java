@@ -6,12 +6,15 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import java.time.Duration;
+
 public class DriveTest {
     public WebDriver driver;
     // Start the browser
     @BeforeSuite
     public void startBrowser(){
         driver=new ChromeDriver();
+
     }
     //Close the browser
     @AfterSuite
