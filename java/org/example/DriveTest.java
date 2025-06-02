@@ -14,6 +14,7 @@ public class DriveTest {
     @BeforeSuite
     public void startBrowser(){
         driver=new ChromeDriver();
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
     }
     //Close the browser

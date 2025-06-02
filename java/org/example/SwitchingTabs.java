@@ -1,3 +1,5 @@
+
+
 package org.example;
 
 import org.openqa.selenium.By;
@@ -61,6 +63,7 @@ public class SwitchingTabs extends DriveTest{
         // Perform actions on the specific tab
         System.out.println("You are now in the desired tab: " + driver.getTitle());
         Thread.sleep(2000);
+
     }
 
 
