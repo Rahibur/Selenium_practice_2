@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.Mainpage;
+import utilities.DataSet;
 import utilities.Main;
 
 public class TestingLoginPage extends Main {
@@ -11,17 +12,64 @@ public class TestingLoginPage extends Main {
     LoginPage loginPage = new LoginPage();
 
     @Test
-    public void TestUserCanLoginWithValidCredentials(){
+    public void TestUserCanLoginWithValidCredentials() {
         mainPage.loadAPage(mainPage.url);
         mainPage.clickOnElement(mainPage.login_btn);
-
         loginPage.writeOneElement(loginPage.username_input, loginPage.username);
         loginPage.writeOneElement(loginPage.password_input, loginPage.password);
-
         loginPage.clickOnElement(loginPage.login_btn);
         Assert.assertEquals(mainPage.getElementText(mainPage.username), loginPage.username);
         Assert.assertTrue(mainPage.waitForElementVisible(mainPage.user_icon).isDisplayed());
 
+
+//        Assert.assertFalse(mainPage.visibleState(mainPage.login_btn));
+    }
+
+    @Test
+    public void TestUserShouldNotBeAbleToLoginWithInvalidPassword() {
+        mainPage.loadAPage(mainPage.url);
+        mainPage.clickOnElement(mainPage.login_btn);
+        loginPage.writeOneElement(loginPage.username_input, loginPage.username);
+        loginPage.writeOneElement(loginPage.password_input, "password");
+        loginPage.clickOnElement(loginPage.login_btn);
+        Assert.assertEquals(loginPage.getElementText(loginPage.error_message), loginPage.error_text);
+        Assert.assertTrue(loginPage.visibleState(loginPage.login_btn));
+    }
+
+    @Test
+    public void TestUserShouldNotBeAbleToLoginWithInvalidUsername() {
+        mainPage.loadAPage(mainPage.url);
+        mainPage.clickOnElement(mainPage.login_btn);
+        loginPage.writeOneElement(loginPage.username_input, "Username");
+        loginPage.writeOneElement(loginPage.password_input, loginPage.password);
+        loginPage.clickOnElement(loginPage.login_btn);
+        Assert.assertEquals(loginPage.getElementText(loginPage.error_message), loginPage.error_text);
+        Assert.assertTrue(loginPage.visibleState(loginPage.login_btn));
+
+    }
+
+    @Test
+    public void TestUserShouldNotBeAbleToLoginWithInvalidUsernamePassword() {
+        mainPage.loadAPage(mainPage.url);
+        mainPage.clickOnElement(mainPage.login_btn);
+        loginPage.writeOneElement(loginPage.username_input, "Username");
+        loginPage.writeOneElement(loginPage.password_input, "password");
+        loginPage.clickOnElement(loginPage.login_btn);
+        Assert.assertEquals(loginPage.getElementText(loginPage.error_message), loginPage.error_text);
+        Assert.assertTrue(loginPage.visibleState(loginPage.login_btn));
+    }
+
+
+    // More efficient code then before as instead of writing invalid creditials repetatively we just write once
+    @Test(dataProvider = "invalidUserCredencial", dataProviderClass = DataSet.class)
+    public void TestUserShouldNotBeAbleToLoginWithInvalidCredentials(String username, String password, String error_message) {
+        mainPage.loadAPage(mainPage.url);
+        mainPage.clickOnElement(mainPage.login_btn);
+        loginPage.writeOneElement(loginPage.username_input, username);
+        loginPage.writeOneElement(loginPage.password_input, password);
+        loginPage.clickOnElement(loginPage.login_btn);
+        Assert.assertEquals(loginPage.getElementText(loginPage.error_message), error_message);
+        Assert.assertTrue(loginPage.visibleState(loginPage.login_btn));
 
     }
 
