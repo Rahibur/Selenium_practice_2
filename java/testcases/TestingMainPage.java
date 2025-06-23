@@ -11,13 +11,15 @@ public class TestingMainPage extends Main {
     @Test
     public void TestMainPageTitle(){
         mainPage.loadAPage(mainPage.url);
-        Assert.assertEquals(mainPage.getPageTitle(), mainPage.title);
+        Assert.assertEquals(mainPage.getPageTitle() , mainPage.title);
+
     }
 
     @Test
     public void TestLoginButton(){
         mainPage.loadAPage(mainPage.url);
         Assert.assertEquals(mainPage.getElementText(mainPage.login_btn), "Log in");
+        System.out.println(mainPage.getElementText(mainPage.login_btn));
         Assert.assertTrue(mainPage.getElement(mainPage.login_btn).isEnabled());
     }
 }

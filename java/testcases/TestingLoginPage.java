@@ -14,13 +14,15 @@ public class TestingLoginPage extends Main {
     @Test
     public void TestUserCanLoginWithValidCredentials() {
         mainPage.loadAPage(mainPage.url);
+        mainPage.addScreenShot("Main Page");
         mainPage.clickOnElement(mainPage.login_btn);
         loginPage.writeOneElement(loginPage.username_input, loginPage.username);
         loginPage.writeOneElement(loginPage.password_input, loginPage.password);
+        loginPage.addScreenShot("Login Page After adding username and password");
         loginPage.clickOnElement(loginPage.login_btn);
         Assert.assertEquals(mainPage.getElementText(mainPage.username), loginPage.username);
         Assert.assertTrue(mainPage.waitForElementVisible(mainPage.user_icon).isDisplayed());
-
+        mainPage.addScreenShot("Log in Success");
 
 //        Assert.assertFalse(mainPage.visibleState(mainPage.login_btn));
     }
