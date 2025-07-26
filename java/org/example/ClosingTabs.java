@@ -10,7 +10,7 @@ public class ClosingTabs extends DriveTest {
     /*
     Close all the tabs only first tab remains
      */
-@Test
+@Test(priority = 1)
 public void closeTab() throws InterruptedException {
     driver.manage().window().maximize();
     driver.get("https://rahulshettyacademy.com/AutomationPractice/"); // tab1
@@ -45,7 +45,7 @@ public void closeTab() throws InterruptedException {
     /*
      Close any Two tabs such as tab 2 and 3
     */
-    @Test
+    @Test(priority = 2)
     public void CloseTab() throws InterruptedException {
         driver.manage().window().maximize();
         driver.get("https://rahulshettyacademy.com/AutomationPractice/"); // tab1
